@@ -17,3 +17,4 @@ Route::delete("/residents/{id}",[ResidentController::class,"destroy"]);
 
 Route::post("/parcels", [ParcellController::class, "store"]);
 Route::get("/parcels", [ParcellController::class, "index"]);
+Route::delete("/parcels/{id}",[ParcellController::class,'destroy']);

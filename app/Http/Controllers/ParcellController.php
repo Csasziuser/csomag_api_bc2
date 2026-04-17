@@ -80,6 +80,15 @@ class ParcellController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $csomag = Parcel::find($id);
+            if(!$csomag){
+                return response()->json(["uzenet" => "Ezzel az azonosítóval nincs csomag a rendszerben!"],404,options:JSON_UNESCAPED_UNICODE);
+            }
+            $csomag->delete();
+            return response()->json(["uzenet" => "Csomag sikeresen törölve!"],200,options:JSON_UNESCAPED_UNICODE);
+        } catch (\Throwable $th) {
+            return response()->json(["uzenet" => "Hiba a törlés során!"],500,options:JSON_UNESCAPED_UNICODE);
+        }
     }
 }
